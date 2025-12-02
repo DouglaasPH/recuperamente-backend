@@ -117,3 +117,36 @@ def adicionar_nota(dados: dados_para_adicionar_nota):
 
     # 5) Resposta de sucesso
     return {"Resposta": "Nota adicionada com sucesso!", "status": "sucesso"}
+
+# RESPONSÁVEL: TEIXEIRA
+#aqui é feita a rota 
+@router.get("/notas")
+def listar_notas(id_usuario: int):
+    #aqui é feita a linkagem com o banco de dados
+    conexao = pegar_conexao_db()
+
+    # Buscar notas no banco
+    execucao = conexao.execute(
+        "SELECT id, data, conteudo FROM notas WHERE id_usuario=?",
+        (id_usuario,)
+    )
+
+    # Salva as notas e fechar
+    notas = execucao.fetchall()
+    conexao.close()
+
+    # Transformar os resultados em lista de dicionários
+    lista_notas = [
+        {
+            "id": nota["id"],
+            "data": nota["data"],
+            "conteudo": nota["conteudo"]
+        }
+        for nota in notas
+    ]
+
+    return {
+        "id_usuario": id_usuario,
+        "total_notas": len(lista_notas),
+        "notas": lista_notas
+    }
