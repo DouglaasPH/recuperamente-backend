@@ -89,7 +89,7 @@ def verificar_login(login: verificar_login):
         return {"Resposta": "A Verificação Não Encontrou O Usuário ---> Credenciais Incorretas", "usuarios_id": verificacao}
 
 # RESPONSÁVEL: TEIXEIRA
-@router.post("/adicionar_nota")
+@router.post("/adicionar-nota")
 def adicionar_nota(dados: dados_para_adicionar_nota):
     #aqui é feita a linkagem com o banco de dados
     conexao = pegar_conexao_db()
@@ -107,7 +107,7 @@ def adicionar_nota(dados: dados_para_adicionar_nota):
 
     # 3) Inserir a nota no banco
     conexao.execute(
-        "INSERT INTO notas (id_usuario, data, conteudo) VALUES (?, ?, ?)",
+        "INSERT INTO calendario (usuario_id, data, descricao_da_data) VALUES (?, ?, ?)",
         (dados.id_usuario, dados.data, dados.conteudo)
     )
 
@@ -127,7 +127,7 @@ def listar_notas(id_usuario: int):
 
     # Buscar notas no banco
     execucao = conexao.execute(
-        "SELECT id, data, conteudo FROM notas WHERE id_usuario=?",
+        "SELECT id, data, descricao_da_data FROM calendario WHERE usuario_id=?",
         (id_usuario,)
     )
 
