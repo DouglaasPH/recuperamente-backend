@@ -101,6 +101,7 @@ def adicionar_nota(dados: dados_para_adicionar_nota):
     )
     usuario_existente = execucao_usuario.fetchall()
 
+    #caso usuário não exista
     if not usuario_existente:
         conexao.close()
         return {"Resposta": "Erro: Usuário não encontrado", "status": "falha"}
