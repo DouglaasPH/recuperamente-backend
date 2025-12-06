@@ -21,7 +21,7 @@ def pegar_conexao_db():
 #aqui é feita a rota 
 @router.post("/cadastrar")
 #aqui é feita a definição da função + a linkagem com o modelo de dados que vai ser enviado
-def registrar(dados_para_registar_conta: dados_pera_registrar_conta):
+def realizar_login(dados_para_registar_conta: dados_pera_registrar_conta): #JALDSON ALTEROU O NOME DA FUNÇÃO PRA EVITAR ERROS
     conexao = pegar_conexao_db()
     conexao.execute(
     "INSERT INTO usuarios (nome, email, senha) VALUES (?,?,?)",
@@ -41,7 +41,7 @@ def registrar(dados_para_registar_conta: dados_pera_registrar_conta):
 #aqui é feita a rota 
 @router.post("/conectar")
 #aqui é feita a definição da função + a linkagem com o modelo de dados que vai ser enviado
-def registrar(conectar: dados_para_conectar):
+def conectar(conectar: dados_para_conectar): #JALDSON ALTEROU O NOME DA FUNÇÃO PRA EVITAR ERROS
     #aqui é feita a linkagem com o banco de dados
     conexao = pegar_conexao_db()
     #aqui é criada a variável execucao pra rodar os comandos das pesquisa
@@ -101,6 +101,7 @@ def adicionar_nota(dados: dados_para_adicionar_nota):
     )
     usuario_existente = execucao_usuario.fetchall()
 
+    #caso usuário não exista
     if not usuario_existente:
         conexao.close()
         return {"Resposta": "Erro: Usuário não encontrado", "status": "falha"}

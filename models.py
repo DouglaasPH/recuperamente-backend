@@ -27,7 +27,8 @@ class verificar_login(BaseModel):
     id_usuarios: int  # O identificador numérico do usuário (número inteiro)
 
 # RESPONSÁVEL: TEIXEIRA
-class dados_para_adicionar_nota(BaseModel):
-    id_usuario: int
-    data: str
-    conteudo: str
+# modelo de dados para validar informações recebidas
+class dados_para_adicionar_nota(BaseModel):  
+    id_usuario: int  # ID do usuário ao qual a nota pertence
+    data: str  # Data da nota
+    conteudo: str  # Conteúdo da nota
