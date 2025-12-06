@@ -52,15 +52,15 @@ def registrar(conectar: dados_para_conectar):
     
     )
     #aqui o fetch "guarda" os dados que ele encontrou e guarda na variável verificacao
-    resultado_login = execucao.fetchall()
+    usuario = execucao.fetchall()
     conexao.close()
     
     #aqui é aplicada uma verificação condicional pra retornar uma mensagem  
     #para o comando enviado
-    if resultado_login:
-        return {"Resposta": "Login Realizado Com Sucesso", "usuarios_id": resultado_login}
+    if usuario:
+        return {"Resposta": "Login Realizado Com Sucesso", "usuario_id": usuario.id}
     else:
-        return {"Resposta": "Login Não Realizado ---> Credenciais Incorretas", "usuarios_id": resultado_login}
+        return {"Resposta": "Login Não Realizado ---> Credenciais Incorretas"}
     
 
 # RESPONSÁVEL = JALDSON
