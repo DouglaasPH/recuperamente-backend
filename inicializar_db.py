@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS notas(
     usuario_id INTEGER,
     data date NOT NULL,
     conteudo TEXT NOT NULL,
+    horario TEXT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 )
 """)

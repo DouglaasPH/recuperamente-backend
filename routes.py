@@ -52,13 +52,13 @@ def conectar(conectar: dados_para_conectar): #JALDSON ALTEROU O NOME DA FUNÇÃO
     
     )
     #aqui o fetch "guarda" os dados que ele encontrou e guarda na variável verificacao
-    usuario = execucao.fetchall()
+    usuario = execucao.fetchone()
     conexao.close()
     
     #aqui é aplicada uma verificação condicional pra retornar uma mensagem  
     #para o comando enviado
     if usuario:
-        return {"Resposta": "Login Realizado Com Sucesso", "usuario_id": usuario.id}
+        return {"Resposta": "Login Realizado Com Sucesso", "usuario_id": dict(usuario)["id"]}
     else:
         return {"Resposta": "Login Não Realizado ---> Credenciais Incorretas"}
     
@@ -141,7 +141,7 @@ def listar_notas(id_usuario: int):
         {
             "id": nota["id"],
             "data": nota["data"],
-            "conteudo": nota["conteudo"]
+            "conteudo": nota["descricao_da_data"]
         }
         for nota in notas
     ]
